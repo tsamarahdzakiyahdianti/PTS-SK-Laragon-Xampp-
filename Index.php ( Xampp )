@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Biodata XAMPP</title>
+
+    <style>
+        body {
+            background: linear-gradient(to right, #ffc0cb, #ffe4f2);
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            width: 400px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #ff4da6;
+        }
+
+        label {
+            font-weight: bold;
+            color: #ff66b2;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 10px;
+            border: 1px solid #ffb6d9;
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff1493;
+        }
+
+        .hasil {
+            margin-top: 20px;
+            background: #fff0f5;
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid #ffb6d9;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="card">
+
+<h2>🌸 Form Biodata 🌸</h2>
+
+<form method="POST">
+    <label>Nama Lengkap:</label><br>
+    <input type="text" name="nama" required><br><br>
+
+    <label>Kelas:</label><br>
+    <input type="text" name="kelas" required><br><br>
+
+    <label>Alamat:</label><br>
+    <textarea name="alamat" required></textarea><br><br>
+
+    <label>Tanggal Lahir:</label><br>
+    <input type="date" name="tgl_lahir" required><br><br>
+
+    <button type="submit" name="simpan">💗 Simpan 💗</button>
+</form>
+
+<?php
+if(isset($_POST['simpan'])){
+    $nama = $_POST['nama'];
+    $kelas = $_POST['kelas'];
+    $alamat = $_POST['alamat'];
+    $tgl_lahir = $_POST['tgl_lahir'];
+
+    $today = new DateTime();
+    $lahir = new DateTime($tgl_lahir);
+    $umur = $today->diff($lahir)->y;
+
+    echo "<div class='hasil'>";
+    echo "<h3 style='color:#ff1493;'>✨ Hasil Data ✨</h3>";
+    echo "Nama: $nama <br>";
+    echo "Kelas: $kelas <br>";
+    echo "Alamat: $alamat <br>";
+    echo "Tanggal Lahir: $tgl_lahir <br>";
+    echo "<b>Umur: $umur Tahun</b>";
+    echo "</div>";
+}
+?>
+
+</div>
+
+</body>
+</html>
