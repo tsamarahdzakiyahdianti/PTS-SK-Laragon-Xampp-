@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Website Biodata Pink</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffb6d9, #ffcce6, #ffe6f2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            animation: backgroundMove 6s infinite alternate;
+        }
+
+        @keyframes backgroundMove {
+            0% { background-position: left; }
+            100% { background-position: right; }
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            width: 420px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            text-align: center;
+            color: #ff3399;
+        }
+
+        label {
+            font-weight: bold;
+            color: #cc0066;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 1px solid #ff99cc;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #ff3399;
+            box-shadow: 0 0 8px #ff99cc;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #ff4da6, #ff80bf);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(to right, #e60073, #ff4da6);
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ffe6f2;
+            border-radius: 15px;
+            display: none;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .result h3 {
+            color: #cc0066;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 10px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>🌸 Form Biodata 🌸</h2>
+
+    <form onsubmit="hitungUmur(event)">
+        <label>Nama Lengkap</label>
+        <input type="text" id="nama" required>
+
+        <label>Kelas</label>
+        <input type="text" id="kelas" required>
+
+        <label>Alamat</label>
+        <textarea id="alamat" required></textarea>
+
+        <label>Tanggal Lahir</label>
+        <input type="date" id="tanggal_lahir" required>
+
+        <button type="submit">💾 Simpan Biodata</button>
+    </form>
+
+    <div class="result" id="hasilBox">
+        <h3>✨ Hasil Biodata ✨</h3>
+        <p id="output"></p>
+    </div>
+
+    <div class="footer">
+        © 2026 Website Biodata Pink
+    </div>
+</div>
+
+<script>
+function hitungUmur(event){
+    event.preventDefault();
+
+    let nama = document.getElementById("nama").value;
+    let kelas = document.getElementById("kelas").value;
+    let alamat = document.getElementById("alamat").value;
+    let tanggal = document.getElementById("tanggal_lahir").value;
+
+    let birthDate = new Date(tanggal);
+    let today = new Date();
+
+    let umur = today.getFullYear() - birthDate.getFullYear();
+    let bulan = today.getMonth() - birthDate.getMonth();
+
+    if (bulan < 0 || (bulan === 0 && today.getDate() < birthDate.getDate())) {
+        umur--;
+    }
+
+    document.getElementById("output").innerHTML =
+        "<b>Nama:</b> " + nama + "<br>" +
+        "<b>Kelas:</b> " + kelas + "<br>" +
+        "<b>Alamat:</b> " + alamat + "<br>" +
+        "<b>Tanggal Lahir:</b> " + tanggal + "<br>" +
+        "<b>Umur:</b> " + umur + " tahun 🎉";
+
+    document.getElementById("hasilBox").style.display = "block";
+}
+</script>
+
+</body>
+</html>
